@@ -1,0 +1,43 @@
+# ------------------------------------------------------------------------------------------------------------------------
+# Project Configuration for GitHub Actions
+# These values are used across multiple workflows to keep paths consistent
+# ------------------------------------------------------------------------------------------------------------------------
+# Usage in calling workflow:
+#   jobs:
+#     load-config:
+#       uses: ./.github/workflows/template-load-config.yml
+#     build-web:
+#       needs: load-config
+#       uses: ./.github/workflows/template-webapp-build.yml
+#       with:
+#         rootDirectory: ${{ needs.load-config.outputs.web_rootDirectory }}
+#         projectName: ${{ needs.load-config.outputs.web_projectName }}
+#     build-dacpac:
+#       needs: load-config
+#       uses: ./.github/workflows/template-dacpac-build.yml
+#       with:
+#         appFolderName: ${{ needs.load-config.outputs.sql_rootDirectory }}
+#         appProjectName: ${{ needs.load-config.outputs.sql_projectName }}
+# ------------------------------------------------------------------------------------------------------------------------
+
+projects:
+  # Web Application (Blazor)
+  web:
+    shortName: 'web'
+    rootDirectory: 'src/CheckList.Web'
+    projectName: 'CheckList.Web'
+    testDirectory: 'src/CheckList.Tests'
+    testProjectName: 'CheckList.Tests'
+    playwrightDirectory: 'src/CheckList.PlaywrightTests'
+    playwrightProjectName: 'CheckList.PlaywrightTests'
+
+  # SQL Database Project
+  sql:
+    shortName: 'sql'
+    rootDirectory: 'src/CheckList.Database'
+    projectName: 'CheckList.Database'
+    solutionName: 'CheckList.Database'
+    testDirectory: ''
+    testProjectName: ''
+    playwrightDirectory: ''
+    playwrightProjectName: ''

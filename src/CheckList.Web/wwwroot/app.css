@@ -1,0 +1,232 @@
+/* ========== CSS Theme Variables — RV Outdoors Palette ========== */
+:root {
+    /* Core backgrounds */
+    --bg-primary: #faf8f5;
+    --bg-secondary: #f0ece6;
+    --bg-card: #ffffff;
+    /* Text */
+    --text-primary: #2d2d2d;
+    --text-secondary: #5a6a5a;
+    --text-muted: #8b9b8b;
+    /* Borders */
+    --border-color: #d5cfc5;
+    /* Accent — forest green replaces Bootstrap blue */
+    --accent-color: #4A8C5C;
+    --accent-color-hover: #3d7a4e;
+    --accent-color-subtle: rgba(74, 140, 92, 0.1);
+    /* Semantic */
+    --success-color: #4A8C5C;
+    --danger-color: #c0392b;
+    --warning-color: #d4a017;
+    /* Extended outdoor palette */
+    --sky-blue: #6CB4D9;
+    --sky-blue-hover: #5a9fc4;
+    --sky-blue-subtle: rgba(108, 180, 217, 0.12);
+    --light-blue: #B8D9E8;
+    --forest-green: #4A8C5C;
+    --earth-brown: #8B6F47;
+    --earth-brown-subtle: rgba(139, 111, 71, 0.1);
+    --warm-gray: #8B8B8B;
+    --cream: #F5F0E8;
+    --charcoal: #3A3A3A;
+    /* Navbar / sidebar */
+    --navbar-bg: #3A3A3A;
+    --navbar-text: #F5F0E8;
+    --sidebar-bg: #2f3530;
+    --sidebar-text: #d5e0d5;
+    --sidebar-active-bg: #4A8C5C;
+    --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+    /* Cards */
+    --card-accent-border: #4A8C5C;
+    --card-gradient-start: rgba(74, 140, 92, 0.04);
+    --card-gradient-end: transparent;
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(58, 58, 58, 0.08);
+    --shadow-md: 0 4px 12px rgba(58, 58, 58, 0.12);
+    /* Sizing */
+    --action-row-height: 48px;
+    --touch-target-min: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1a1e1a;
+        --bg-secondary: #242a24;
+        --bg-card: #2a302a;
+        --text-primary: #e8ede8;
+        --text-secondary: #a0b0a0;
+        --text-muted: #6a7a6a;
+        --border-color: #3a453a;
+        --accent-color: #6dba80;
+        --accent-color-hover: #82cc95;
+        --accent-color-subtle: rgba(109, 186, 128, 0.12);
+        --success-color: #6dba80;
+        --danger-color: #e87c73;
+        --warning-color: #e0c050;
+        --sky-blue: #7cc4e6;
+        --sky-blue-hover: #94d2ee;
+        --sky-blue-subtle: rgba(124, 196, 230, 0.12);
+        --light-blue: #5a8fa8;
+        --forest-green: #6dba80;
+        --earth-brown: #b89870;
+        --earth-brown-subtle: rgba(184, 152, 112, 0.1);
+        --warm-gray: #9a9a9a;
+        --cream: #2a302a;
+        --charcoal: #e8ede8;
+        --navbar-bg: #1a1e1a;
+        --navbar-text: #d5e0d5;
+        --sidebar-bg: #1e241e;
+        --sidebar-text: #a0b0a0;
+        --sidebar-active-bg: #3d7a4e;
+        --sidebar-hover-bg: rgba(255, 255, 255, 0.06);
+        --card-accent-border: #6dba80;
+        --card-gradient-start: rgba(109, 186, 128, 0.06);
+        --card-gradient-end: transparent;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    }
+}
+
+/* ========== Base Styles ========== */
+html, body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', 'Segoe UI', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+a, .btn-link {
+    color: var(--accent-color);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-primary:hover, .btn-primary:active {
+    background-color: var(--accent-color-hover);
+    border-color: var(--accent-color-hover);
+}
+
+.btn-outline-primary {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-info {
+    background-color: var(--sky-blue);
+    border-color: var(--sky-blue);
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: var(--sky-blue-hover);
+    border-color: var(--sky-blue-hover);
+    color: #fff;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem var(--bg-primary), 0 0 0 0.25rem var(--accent-color);
+}
+
+/* ========== Progress Bars — Forest Green ========== */
+.progress {
+    background-color: var(--bg-secondary);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: var(--forest-green) !important;
+    transition: width 0.4s ease;
+}
+
+h1:focus {
+    outline: none;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid var(--success-color);
+}
+
+.invalid {
+    outline: 1px solid var(--danger-color);
+}
+
+.validation-message {
+    color: var(--danger-color);
+}
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, var(--danger-color);
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: #fff;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }
+
+.darker-border-checkbox.form-check-input {
+    border-color: var(--text-muted);
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* ========== Card Styles ========== */
+.card {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    border-left: 3px solid var(--card-accent-border);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    background-image: linear-gradient(135deg, var(--card-gradient-start), var(--card-gradient-end));
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ========== Toast Notification ========== */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1080;
+}
+
+.toast-notification {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: var(--shadow-md);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

@@ -1,0 +1,78 @@
+# ------------------------------------------------------------------------------------------------------------------------
+# Reusable Workflow: Run .NET Playwright Smoke Tests
+# ------------------------------------------------------------------------------------------------------------------------
+name: z_template_smoke_test
+run-name: Run Smoke Test
+on:
+  workflow_call:
+    inputs:
+      envCode:
+        required: true
+        type: string
+      testProject:
+        required: false
+        type: string
+        default: ''
+
+# ------------------------------------------------------------------------------------------------------------------------
+jobs:
+  run-smoke-test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    env:
+      envCode: ${{ inputs.envCode }}
+      APP_URL: 'https://${{ vars.APP_NAME }}-${{ inputs.envCode }}.azurewebsites.net'
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Display Variables
+      run: |-
+        echo "envCode=${{ inputs.envCode }}"
+        echo "APP_URL=${{ env.APP_URL }}"
+        echo "testProject=${{ inputs.testProject }}"
+      continue-on-error: true
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore Test Project
+      run: dotnet restore ${{ inputs.testProject }}
+
+    - name: Build Test Project
+      run: dotnet build ${{ inputs.testProject }} --no-restore
+
+    - name: Install Playwright Browsers
+      run: |
+        pwsh -Command "& { dotnet tool install --global Microsoft.Playwright.CLI 2>/dev/null; exit 0 }"
+        pwsh ${{ github.workspace }}/src/CheckList.PlaywrightTests/bin/Debug/net10.0/playwright.ps1 install --with-deps chromium
+
+    - name: Run Playwright Smoke Tests
+      run: |
+        dotnet test ${{ inputs.testProject }} \
+          --no-build \
+          --logger "trx;LogFileName=smoke-test-results.trx" \
+          --results-directory TestResults
+      env:
+        APP_URL: ${{ env.APP_URL }}
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: TestResults/**/*.trx
+        check_name: 'Smoke Tests (${{ inputs.envCode }})'
+      continue-on-error: true
+
+    - name: Upload Test Results Artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: smoke-test-results-${{ inputs.envCode }}
+        path: TestResults/
+        retention-days: 30
