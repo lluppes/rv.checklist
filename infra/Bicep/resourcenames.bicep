@@ -7,7 +7,7 @@ param instanceNumber string = '1'
 
 // --------------------------------------------------------------------------------
 var sanitizedEnvironment = toLower(environmentCode)
-var sanitizedAppNameWithDashes = replace(replace(toLower(appName), ' ', ''), '_', '')
+// var sanitizedAppNameWithDashes = replace(replace(toLower(appName), ' ', ''), '_', '')
 var sanitizedAppInstanceNameWithDashes = replace(replace(toLower('${appName}${instanceNumber}'), ' ', ''), '_', '')
 var sanitizedAppNameInstance = replace(replace(replace(toLower('${appName}${instanceNumber}'), ' ', ''), '_', ''), '-', '')
 
@@ -16,8 +16,9 @@ var sanitizedAppNameInstance = replace(replace(replace(toLower('${appName}${inst
 var resourceAbbreviations = loadJsonContent('./data/resourceAbbreviations.json')
 
 // --------------------------------------------------------------------------------
-var webSiteName         = environmentCode == 'prod' ? toLower('${sanitizedAppNameWithDashes}') : toLower('${sanitizedAppInstanceNameWithDashes}-${sanitizedEnvironment}')
-var baseStorageName     = toLower('${sanitizedAppNameInstance}${resourceAbbreviations.storageAccountSuffix}${sanitizedEnvironment}')
+var webSiteName         = toLower('${sanitizedAppInstanceNameWithDashes}-${sanitizedEnvironment}')
+// var webSiteName         = environmentCode == 'prod' ? toLower('${sanitizedAppNameWithDashes}') : toLower('${sanitizedAppInstanceNameWithDashes}-${sanitizedEnvironment}')
+// var baseStorageName     = toLower('${sanitizedAppNameInstance}${resourceAbbreviations.storageAccountSuffix}${sanitizedEnvironment}')
 
 // --------------------------------------------------------------------------------
 output logAnalyticsWorkspaceName string  = toLower('${sanitizedAppInstanceNameWithDashes}-${sanitizedEnvironment}-${resourceAbbreviations.logWorkspaceSuffix}')
